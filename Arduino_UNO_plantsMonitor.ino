@@ -12,7 +12,7 @@ boolean gain;     // Gain setting, 0 = X1, 1 = X16;
 unsigned int ms;  // Integration ("shutter") time in milliseconds
 
 
-String deviceName = "Arduino_3";
+String deviceName = "PlantsMonitor";
 String readTime = "POSIX";
 
 #define DHTPIN1 8       // what pin we're connected to DHT 1
@@ -36,11 +36,11 @@ int watterPumpONdelay = 5; // define how many seconds watter Pump will be ON whe
 int LedPin = 13 ; //
 
 //Hardware pin definitions for light sensor
-int UVOUT = A1; //Output from the sensor
+int UVOUT = A3; //Output from the sensor
 int REF_3V3 = A0; //3.3V power on the Arduino board
 
 //Hardware pin definitions for soil moisture sensor
-int SoilPin = A2; //Output from the sensor
+int SoilPin = A1; //Output from the sensor
 
 
 void setup() {  
@@ -61,12 +61,13 @@ void setup() {
   // requested integration time in ms (this will be useful later):
   light.setTiming(gain,time,ms);
   light.setPowerUp();
+  delay(5000);  //wait a time for ESP8266 connect WiFi before send data
 }
 
 void loop() { //here we go...
   digitalWrite(LedPin,HIGH);
   DHT_read();
-  //UV_read();
+  UV_read();
   LIGHT_read();
   SOIL_MOISTURE_read();
   digitalWrite(LedPin,LOW);

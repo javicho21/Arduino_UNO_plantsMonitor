@@ -34,8 +34,7 @@ Arduino     Soil Moisture Sensor YL-69
 
   sendPayload(deviceName,"SoilMoistureSensor","SoilMoisture","H",readTime,String(sample),"M");
   
-  sendPayload(deviceName,"SoilMoistureSensor","SoilMoisture","H",readTime,SoilMoistureResult,"E");
-  
-  
+  sendPayload(deviceName,"SoilMoistureSensor","SoilMoisture","state",readTime,SoilMoistureResult,"E");
+
 }
 
